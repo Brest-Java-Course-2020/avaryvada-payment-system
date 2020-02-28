@@ -58,8 +58,3 @@
 
 ![Modal Windows](https://github.com/Brest-Java-Course-2020/avaryvada-payment-system/blob/development/documentation/pictures/Pic.3%20Input%20windows.png)
 
-#### Технические требования:
-
--  Использование фреймворка Spring JDBC и базы данных H2
--  Покрытие кода Unit-тестами - не менее 75 %
--  Добавить созданный мультипроект на веб-сервис github.com.
