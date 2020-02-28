@@ -29,8 +29,6 @@
 -  Сумму всех значений для счетов клиента
 -  Возможность сортировки таблицы по клику на поле в шапке
 
-![Modal Windows](https://github.com/Brest-Java-Course-2020/avaryvada-payment-system/blob/development/documentation/pictures/Pic.3%20Input%20windows.png)
-
 **При нажатии на карту отображать таблицу, содержащую информацию о  истории платежей.**
 
 ![Payments_Table](https://github.com/Brest-Java-Course-2020/avaryvada-payment-system/blob/development/documentation/pictures/Pic.2%20PaymentList.png)
@@ -58,8 +56,10 @@
 -  Отображение имени клиента в шапке.
 -  Уведомление клиента об успешной или неудачной операции. 
 
+![Modal Windows](https://github.com/Brest-Java-Course-2020/avaryvada-payment-system/blob/development/documentation/pictures/Pic.3%20Input%20windows.png)
+
 #### Технические требования:
 
 -  Использование фреймворка Spring JDBC и базы данных H2
 -  Покрытие кода Unit-тестами - не менее 75 %
--  Добавить созданный мультипроект в Git.
+-  Добавить созданный мультипроект на веб-сервис github.com.
