@@ -24,7 +24,13 @@ export default props => (
 					checked={item.block}/>
 			</td>
 			<td>
-				<button type="button" className="btn btn-info">History</button>
+				<button
+					type="button"
+					className="btn btn-info"
+					onClick={props.onRowSelect.bind(null, item)}>
+					History
+				</button>
+
 			{/*TODO: create icon!*/}
 			</td>
 		</tr>

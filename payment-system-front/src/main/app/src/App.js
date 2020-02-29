@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Loader from './Loader/Loader';
 import Table from './Table/Table';
 import sort from 'lodash';
+import PaymentTable from './Card-Details/DetailsTable';
 
 class App extends Component {
 
@@ -10,6 +11,7 @@ class App extends Component {
 		data: [],
 		sort: 'asc', //def
 		sortField: 'id',//def
+		row: null, //selected card
 	};
 
 	//after load DOM
@@ -19,13 +21,48 @@ class App extends Component {
 		//const data = await response.json();
 		//cardnumber - regexp
 		const data = [
-			{cardNumber:'visa-4444', balance: 1,  expense: 2, block: false},
-			{cardNumber: 'visa-4443', balance: 2,  expense: 12, block: false},
-			{cardNumber: 'visa-4442', balance: 3,  expense: 22, block: true},
-			{cardNumber:' visa-4441', balance: 4,  expense: 32, block: false},
-			{cardNumber: 'visa-4445', balance: 6,  expense: 42, block: true},
-			{cardNumber: 'visa-4447', balance: 7,  expense: 52, block: true},
-			{cardNumber: 'visa-4449', balance: 9,  expense: 62, block: false}
+			{cardNumber:'visa-4444', balance: 1,  expense: 2, block: false,
+			payments: [
+				{date:'12-06-2019', number: 12, cost: 5, description: 'Phone'},
+				{date:'12-06-2019', number: 12, cost: 5, description: 'Phone'},
+				{date:'12-06-2019', number: 12, cost: 5, description: 'Phone'}
+			]},
+			{cardNumber: 'visa-4443', balance: 2,  expense: 12, block: false,
+				payments: [
+					{date:'12-06-2019', number: 12, cost: 5, description: 'Phone'},
+					{date:'12-06-2019', number: 12, cost: 5, description: 'Phone'},
+					{date:'12-06-2019', number: 12, cost: 5, description: 'Phone'}
+				]},
+			{cardNumber: 'visa-4442', balance: 3,  expense: 22, block: true,
+				payments: [
+					{date:'12-06-2019', number: 12, cost: 5, description: 'Phone'},
+					{date:'12-06-2019', number: 12, cost: 5, description: 'Phone'},
+					{date:'12-06-2019', number: 12, cost: 5, description: 'Phone'}
+				]},
+			{cardNumber:' visa-4441', balance: 4,  expense: 32, block: false,
+				payments: [
+					{date:'12-06-2019', number: 12, cost: 5, description: 'Phone'},
+					{date:'12-06-2019', number: 12, cost: 5, description: 'Phone'},
+					{date:'12-06-2019', number: 12, cost: 5, description: 'Phone'}
+				]},
+			{cardNumber: 'visa-4445', balance: 6,  expense: 42, block: true,
+				payments: [
+					{date:'12-06-2019', number: 12, cost: 5, description: 'Phone'},
+					{date:'12-06-2019', number: 12, cost: 5, description: 'Phone'},
+					{date:'12-06-2019', number: 12, cost: 5, description: 'Phone'}
+				]},
+			{cardNumber: 'visa-4447', balance: 7,  expense: 52, block: true,
+				payments: [
+					{date:'12-06-2019', number: 12, cost: 5, description: 'Phone'},
+					{date:'12-06-2019', number: 12, cost: 5, description: 'Phone'},
+					{date:'12-06-2019', number: 12, cost: 5, description: 'Phone'}
+				]},
+			{cardNumber: 'visa-4449', balance: 9,  expense: 62, block: false,
+				payments: [
+					{date:'12-06-2019', number: 12, cost: 5, description: 'Phone'},
+					{date:'12-06-2019', number: 12, cost: 5, description: 'Phone'},
+					{date:'12-06-2019', number: 12, cost: 5, description: 'Phone'}
+				]}
 		]
 
 
@@ -51,17 +88,30 @@ class App extends Component {
 
 		console.log(sortField)
 	}
+	onRowSelect = row => (
+		this.setState({row: row})
+	)
 
 	render() {
 		return (
 			<div className="container">
+
 				{
 					this.state.isLoading
-						? <Loader/>					//data loading case
-						: <Table 					//data load case
-							data={this.state.data}
-							onSort={this.onSort} // sort (ASK MENTOR! without rest)
-						/>
+					? <Loader/>					//data loading case
+					: (
+						this.state.row ?
+							<PaymentTable
+								data={this.state.data[0].payments}
+							/>
+						:
+						<Table 					//data load case
+						data={this.state.data}
+						sort={this.state.sort} //auto sort
+						sortField={this.state.sortField} // sort field
+						onSort={this.onSort} // sort (ASK MENTOR! without rest)
+						onRowSelect={this.onRowSelect} //info about card payment
+					/>)
 				}
 			</div>
 
