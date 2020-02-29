@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
 import Loader from './Loader/Loader';
 import Table from './Table/Table';
+import sort from 'lodash';
 
 class App extends Component {
 
 	state = {
 		isLoading: true,
-		data: []
+		data: [],
+		sort: 'asc', //def
+		sortField: 'id',//def
 	};
 
 	//after load DOM
@@ -29,8 +32,24 @@ class App extends Component {
 		console.log(data);
 		this.setState({
 			isLoading: false,
-			data: data
+			data: data,
+			sort: 'asc',  // 'desc'
+			sortField: 'id',
 		})
+	}
+	onSort = sortField => {
+		const cloneData = this.state.data.concat(); // save state.data
+		const sortType = this.state.sort === 'asc' ? 'desc' : 'asc'; // generate type
+		const orderedData = sort.orderBy(cloneData, sortField, sortType); // generate data
+
+
+		this.setState({//set state
+			data: orderedData,
+			sort: sortType,
+			sortField
+		})
+
+		console.log(sortField)
 	}
 
 	render() {
@@ -41,12 +60,14 @@ class App extends Component {
 						? <Loader/>					//data loading case
 						: <Table 					//data load case
 							data={this.state.data}
+							onSort={this.onSort} // sort (ASK MENTOR! without rest)
 						/>
 				}
 			</div>
 
 		);
 	}
+
 }
 
 export default App;
