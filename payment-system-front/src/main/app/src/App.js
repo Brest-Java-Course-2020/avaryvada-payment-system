@@ -3,6 +3,7 @@ import Loader from './Loader/Loader';
 import Table from './Table/Table';
 import sort from 'lodash';
 import PaymentTable from './Card-Details/DetailsTable';
+import Header from './Header/Header';
 
 class App extends Component {
 
@@ -96,13 +97,18 @@ class App extends Component {
 		return (
 			<div className="container">
 
-				{
+				<Header/>
+				{ // create get for name and add to header
 					this.state.isLoading
 					? <Loader/>					//data loading case
 					: (
 						this.state.row ?
 							<PaymentTable
-								data={this.state.data[0].payments}
+								data={this.state.row.payments}
+								sort={this.state.sort} //auto sort
+								sortField={this.state.sortField} // sort field
+								onSort={this.onSort} // sort (ASK MENTOR! without rest)
+								onRowSelect={this.onRowSelect} //info about card payment
 							/>
 						:
 						<Table 					//data load case
@@ -111,7 +117,8 @@ class App extends Component {
 						sortField={this.state.sortField} // sort field
 						onSort={this.onSort} // sort (ASK MENTOR! without rest)
 						onRowSelect={this.onRowSelect} //info about card payment
-					/>)
+					/>
+					)
 				}
 			</div>
 
