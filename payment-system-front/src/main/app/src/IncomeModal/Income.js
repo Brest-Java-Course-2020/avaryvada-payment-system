@@ -6,7 +6,7 @@ export default props => (
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="exampleModalLabel">New Income</h5>
-					<button type="button" class="close" onClick={props.closeIncome.bind(null)} aria-label="Close">
+					<button type="button" class="close" onClick={props.closeModal.bind(null)} aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
@@ -39,7 +39,7 @@ export default props => (
 						</div>
 						<form>
 						<input type="number"
-							onChange={props.setIncomeValue}
+							onChange={props.setValue}
 							className="form-control" aria-label="Amount"/>
 						</form>
 						<div className="input-group-append">
@@ -49,7 +49,7 @@ export default props => (
 				</div>
 
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" onClick={props.closeIncome.bind(null)}>Close</button>
+					<button type="button" class="btn btn-secondary" onClick={props.closeModal.bind(null)}>Close</button>
 					<button type="button" class="btn btn-primary">Save changes</button>
 				</div>
 			</div>

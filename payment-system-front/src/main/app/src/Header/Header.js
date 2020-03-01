@@ -23,7 +23,9 @@ export default props => (
 
 				<button
 					type="button"
-					className="btn btn-success mr-3">
+					className="btn btn-success mr-3"
+					onClick={props.newPayment.bind(null)}>
+
 					New Payment
 				</button>
 

@@ -5,6 +5,7 @@ import sort from 'lodash';
 import PaymentTable from './Card-Details/DetailsTable';
 import Header from './Header/Header';
 import Income from './IncomeModal/Income';
+import Payment from './New-Payment-Modal/NewPaymentModal';
 
 class App extends Component {
 
@@ -16,8 +17,9 @@ class App extends Component {
 		row: null, //selected card, null case - all cards list
 		newPaymentModalOn: false,
 		incomeModalOn: false,
-		selectedCardIncome: 'Select Card!',
-		incomeValue: 0,
+		selectedCardNumber: 'Select Card!',
+		costValue: 0,
+		description: '',
 		cmp : 'Loader'
 	};
 
@@ -121,16 +123,21 @@ class App extends Component {
 	openIncome = incomeModalOn => (
 		this.setState({incomeModalOn: true, cmp:'openIncomeWindow'})
 	);
-	closeIncome = incomeModalOn => (
+	closeModal = incomeModalOn => (
 		this.setState({incomeModalOn: false, cmp:'allCardsTable'})
 	);
-	setCardNumber = selectedCardIncome => {
-		this.setState({selectedCardIncome});
+	setCardNumber = selectedCardNumber => {
+		this.setState({selectedCardNumber});
 	};
-	setIncomeValue = incomeValue => {
-		this.setState({incomeValue: incomeValue.target.value});
+	setValue = costValue => {
+		this.setState({costValue: costValue.target.value});
 	};
-
+	setDescription= description => {
+		this.setState({description: description.target.value});
+	};
+	newPayment=()=>(
+		this.setState({newPaymentModalOn: true, cmp:'openPaymentWindow'})
+	)
 	render() {
 		let component = null;
 
@@ -157,12 +164,24 @@ class App extends Component {
 				/>
 				break;
 			case 'openIncomeWindow':
-				component = <Income closeIncome={this.closeIncome}
-				data={this.state.data}
-				card={this.state.selectedCardIncome}
-				incomeValue={this.state.incomeValue}
-				setCardNumber={this.setCardNumber}
-				setIncomeValue={this.setIncomeValue}
+				component = <Income
+					closeModal={this.closeModal}
+					data={this.state.data}
+					card={this.state.selectedCardNumber}
+					costValue={this.state.costValue}
+					setCardNumber={this.setCardNumber}
+					setValue={this.setValue}
+				/>
+				break;
+			case 'openPaymentWindow':
+				component = <Payment
+					closeModal={this.closeModal}
+					data={this.state.data}
+					card={this.state.selectedCardNumber}
+					costValue={this.state.costValue}
+					setCardNumber={this.setCardNumber}
+					setValue={this.setValue}
+					setDescription={this.setDescription}
 				/>
 				break;
 		}
@@ -172,6 +191,7 @@ class App extends Component {
 				<Header
 					cardsList={this.cardsList}
 					openIncome={this.openIncome}
+					newPayment = {this.newPayment}
 				/>
 				<React.Fragment>
 					<div>
