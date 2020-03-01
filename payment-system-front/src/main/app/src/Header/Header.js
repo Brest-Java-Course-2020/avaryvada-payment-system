@@ -9,8 +9,7 @@ export default props => (
 		style={{
 			height: '15vh',
 			background: '#bfdffd'
-		}}
-	>
+		}}>
 		<a className="navbar-brand" href="#">Welcome Dear Customer</a>
 
 		<div>
@@ -18,14 +17,13 @@ export default props => (
 
 					type="button"
 					className="btn btn-secondary mr-3 "
-				>
+					onClick={props.openIncome.bind(null)}>
 					Income
 				</button>
 
 				<button
 					type="button"
-					className="btn btn-success mr-3"
-				>
+					className="btn btn-success mr-3">
 					New Payment
 				</button>
 
@@ -45,5 +43,7 @@ export default props => (
 			</button>
 
 		</div>
+
 	</nav>
+
 )
