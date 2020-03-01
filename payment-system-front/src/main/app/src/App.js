@@ -7,6 +7,13 @@ import Header from './Header/Header';
 import Income from './IncomeModal/Income';
 import Payment from './New-Payment-Modal/NewPaymentModal';
 
+
+//TODO after server-side:
+//TODO fetch to save btn-s
+//TODO onclick to block and rename table headers
+//TODO authorisation ??
+//TODO sort-direction icon??
+
 class App extends Component {
 
 	state = {
@@ -107,7 +114,6 @@ class App extends Component {
 		this.setState({
 			data: orderedData,
 			sort: sortType,
-			cmp: 'Table',
 			sortField
 		});
 
@@ -199,9 +205,6 @@ class App extends Component {
 					</div>
 				</React.Fragment>
 
-				{ // create get for name and add to heade
-
-				}
 			</div>
 
 		);

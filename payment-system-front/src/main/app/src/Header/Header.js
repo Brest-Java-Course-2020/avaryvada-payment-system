@@ -1,7 +1,4 @@
 import React from 'react';
-import App from '../App';
-
-
 
 export default props => (
 
@@ -9,25 +6,28 @@ export default props => (
 		style={{
 			height: '15vh',
 			background: '#bfdffd'
-		}}>
+		}}
+	>
 		<a className="navbar-brand" href="#">Welcome Dear Customer</a>
 
 		<div>
-				<button
+			<button
 
-					type="button"
-					className="btn btn-secondary mr-3 "
-					onClick={props.openIncome.bind(null)}>
-					Income
-				</button>
+				type="button"
+				className="btn btn-secondary mr-3 "
+				onClick={props.openIncome.bind(null)}
+			>
+				Income
+			</button>
 
-				<button
-					type="button"
-					className="btn btn-success mr-3"
-					onClick={props.newPayment.bind(null)}>
+			<button
+				type="button"
+				className="btn btn-success mr-3"
+				onClick={props.newPayment.bind(null)}
+			>
 
-					New Payment
-				</button>
+				New Payment
+			</button>
 
 			<button
 				type="button"
