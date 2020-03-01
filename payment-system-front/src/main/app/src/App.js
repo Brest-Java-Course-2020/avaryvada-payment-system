@@ -89,15 +89,22 @@ class App extends Component {
 
 		console.log(sortField)
 	}
+
 	onRowSelect = row => (
 		this.setState({row: row})
+	)
+	cardsList = row => (
+		this.setState({row: null})
 	)
 
 	render() {
 		return (
 			<div className="container">
 
-				<Header/>
+				<Header
+					cardsList = {this.cardsList}
+				/>
+
 				{ // create get for name and add to header
 					this.state.isLoading
 					? <Loader/>					//data loading case

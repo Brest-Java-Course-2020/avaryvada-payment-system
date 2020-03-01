@@ -1,47 +1,49 @@
 import React from 'react';
+import App from '../App';
+
+
 
 export default props => (
 
-	<nav className="navbar navbar-expand-lg navbar-dark" style={{background: '#6aa8fd'}}>
+	<nav className="d-flex navbar navbar-expand-lg navbar-light justify-content-between flex-nowrap"
+		style={{
+			height: '15vh',
+			background: '#bfdffd'
+		}}
+	>
 		<a className="navbar-brand" href="#">Welcome Dear Customer</a>
-		<button className="navbar-toggler"
-			type="button"
-			data-toggle="collapse"
-			data-target="#navbarNavAltMarkup"
-			aria-controls="navbarNavAltMarkup"
-			aria-expanded="false"
-			aria-label="Toggle navigation"
-		>
-			<span className="navbar-toggler-icon"></span>
-		</button>
-		<div id="navbarNavAltMarkup">
-			<div className="row">
 
+		<div>
 				<button
+
 					type="button"
-					className="btn btn-secondary">
+					className="btn btn-secondary mr-3 "
+				>
 					Income
 				</button>
+
 				<button
-					class="pr-2"
 					type="button"
-					className="btn btn-success">
+					className="btn btn-success mr-3"
+				>
 					New Payment
 				</button>
-				<button
-					type="button"
-					className="btn btn-warning">
-					Cards List
-				</button>
-				<button
-					type="button"
-					className="btn btn-outline-danger">
-					Logout
-				</button>
 
+			<button
+				type="button"
+				className="btn btn-warning mr-3"
+				onClick={props.cardsList.bind(null)}
+			>
+				Cards List
+			</button>
 
-			</div>
+			<button
+				type="button"
+				className="btn btn-outline-danger mr-3"
+			>
+				Logout
+			</button>
+
 		</div>
 	</nav>
-
-	)
+)
