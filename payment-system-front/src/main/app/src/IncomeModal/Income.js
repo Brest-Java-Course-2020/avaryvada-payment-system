@@ -1,5 +1,5 @@
 import React from 'react';
-
+//<!--TODO add querry(post) to save changes. All values in state.-->
 export default props => (
 
 		<div class="modal-dialog" role="document">
@@ -37,21 +37,16 @@ export default props => (
 						<div className="input-group-prepend">
 							<span className="input-group-text">$</span>
 						</div>
+						<form>
 						<input type="number"
-							value={props.incomeValue}
+							onChange={props.setIncomeValue}
 							className="form-control" aria-label="Amount"/>
-
+						</form>
 						<div className="input-group-append">
 							<span className="input-group-text">.00</span>
 						</div>
 					</div>
 				</div>
-
-
-
-
-
-
 
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" onClick={props.closeIncome.bind(null)}>Close</button>

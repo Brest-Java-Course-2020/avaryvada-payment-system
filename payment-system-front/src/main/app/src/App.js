@@ -18,6 +18,7 @@ class App extends Component {
 		incomeModalOn: false,
 		selectedCardIncome: 'Select Card!',
 		incomeValue: 0,
+		cmp : 'Loader'
 	};
 
 	//after load DOM
@@ -91,7 +92,8 @@ class App extends Component {
 			isLoading: false,
 			data: data,
 			sort: 'asc',  // 'desc'
-			sortField: 'id'
+			sortField: 'id',
+			cmp: 'allCardsTable'
 		});
 	}
 
@@ -100,33 +102,70 @@ class App extends Component {
 		const sortType = this.state.sort === 'asc' ? 'desc' : 'asc'; // generate type
 		const orderedData = sort.orderBy(cloneData, sortField, sortType); // generate data
 
-
-		this.setState({//set state
+		this.setState({
 			data: orderedData,
 			sort: sortType,
+			cmp: 'Table',
 			sortField
 		});
 
-		console.log(sortField);
+
 	};
 
 	onRowSelect = row => (
-		this.setState({row: row})
+		this.setState({row: row, cmp:'selectedCardHistory'})
 	);
 	cardsList = row => (
-		this.setState({row: null})
+		this.setState({row: null, cmp:'allCardsTable'})
 	);
 	openIncome = incomeModalOn => (
-		this.setState({incomeModalOn: true})
+		this.setState({incomeModalOn: true, cmp:'openIncomeWindow'})
 	);
 	closeIncome = incomeModalOn => (
-		this.setState({incomeModalOn: false})
+		this.setState({incomeModalOn: false, cmp:'allCardsTable'})
 	);
 	setCardNumber = selectedCardIncome => {
-		this.setState({selectedCardIncome})
+		this.setState({selectedCardIncome});
+	};
+	setIncomeValue = incomeValue => {
+		this.setState({incomeValue: incomeValue.target.value});
 	};
 
 	render() {
+		let component = null;
+
+		switch (this.state.cmp){
+			case 'Loader':
+				component = <Loader/> //data loading case
+				break;
+			case 'allCardsTable':
+				component = <Table //data load case
+					data={this.state.data}
+					sort={this.state.sort} //auto sort
+					sortField={this.state.sortField} // sort field
+					onSort={this.onSort} // sort (ASK MENTOR! without rest)
+					onRowSelect={this.onRowSelect} //info about card payment
+				/>
+				break;
+			case 'selectedCardHistory':
+				component = <PaymentTable
+					data={this.state.row.payments}
+					sort={this.state.sort} //auto sort
+					sortField={this.state.sortField} // sort field
+					onSort={this.onSort} // sort (ASK MENTOR! without rest)
+					onRowSelect={this.onRowSelect} //info about card payment
+				/>
+				break;
+			case 'openIncomeWindow':
+				component = <Income closeIncome={this.closeIncome}
+				data={this.state.data}
+				card={this.state.selectedCardIncome}
+				incomeValue={this.state.incomeValue}
+				setCardNumber={this.setCardNumber}
+				setIncomeValue={this.setIncomeValue}
+				/>
+				break;
+		}
 		return (
 			<div className="container">
 
@@ -134,37 +173,14 @@ class App extends Component {
 					cardsList={this.cardsList}
 					openIncome={this.openIncome}
 				/>
+				<React.Fragment>
+					<div>
+						{component}
+					</div>
+				</React.Fragment>
 
-				{ // create get for name and add to header
-					this.state.incomeModalOn || this.state.newPaymentModalOn
-						? <Income
-							closeIncome={this.closeIncome}
-							data={this.state.data}
-							card={this.state.selectedCardIncome}
-							incomeValue = {this.state.incomeValue}
-							setCardNumber = {this.setCardNumber}
-						/>
-						: (this.state.isLoading
-							? <Loader/>					//data loading case
-							: (
-								this.state.row ?
-									<PaymentTable
-										data={this.state.row.payments}
-										sort={this.state.sort} //auto sort
-										sortField={this.state.sortField} // sort field
-										onSort={this.onSort} // sort (ASK MENTOR! without rest)
-										onRowSelect={this.onRowSelect} //info about card payment
-									/>
-									:
-									<Table                    //data load case
-										data={this.state.data}
-										sort={this.state.sort} //auto sort
-										sortField={this.state.sortField} // sort field
-										onSort={this.onSort} // sort (ASK MENTOR! without rest)
-										onRowSelect={this.onRowSelect} //info about card payment
-									/>
-							)
-						)
+				{ // create get for name and add to heade
+
 				}
 			</div>
 
