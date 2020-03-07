@@ -18,8 +18,8 @@ public interface PaymentDao {
     /**
      * Find Customer Cards by Id.
      *
-     * @param  CustomerCardId department Id.
-     * @return department
+     * @param  CustomerCardId Customer Card Id.
+     * @return Customer Card
      */
 
     Optional<CustomerCard> findById(Integer CustomerCardId);
@@ -43,7 +43,7 @@ public interface PaymentDao {
     /**
      * Delete Customer Card.
      *
-     * @param customerCardId department id.
+     * @param customerCardId Customer card id.
      * @return number of updated records in the database.
      */
     int delete(Integer customerCardId);

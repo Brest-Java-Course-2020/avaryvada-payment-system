@@ -29,6 +29,7 @@
 		<module>payment-system-front</module>
 		<module>payment-system-dao</module>
 		<module>payment-system-model</module>
+		<module>payment-system-testdb</module>
 	</modules>
 
 	<dependencyManagement>
