@@ -1,0 +1,58 @@
+package com.epam.brest.courses.dao;
+
+import com.epam.brest.courses.model.CustomerCard;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+
+
+import java.util.List;
+;
+import java.util.Optional;
+
+
+public class PaymentDaoJdbc implements PaymentDao {
+
+
+    private final CustomerCardRowMapper customerCardRowMapper = new CustomerCardRowMapper();
+
+    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+    public PaymentDaoJdbc(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+    }
+
+
+    @Override
+    public List<CustomerCard> findAll() {
+
+    }
+
+    @Override
+    public Optional<CustomerCard> findById(Integer CustomerCardId) {
+
+    }
+
+
+    @Override
+    public Integer create(CustomerCard customerCard) {
+
+    }
+
+    @Override
+    public int update(CustomerCard customerCard) {
+
+    }
+
+     @Override
+    public int delete(Integer customerCardId) {
+
+    }
+
+    private class CustomerCardRowMapper implements RowMapper<CustomerCard> {
+
+        }
+    }
+}
