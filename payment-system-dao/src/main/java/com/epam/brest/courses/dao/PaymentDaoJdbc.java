@@ -36,7 +36,8 @@ public class PaymentDaoJdbc implements PaymentDao {
 
 //        LOGGER.trace("findAll()");
         return namedParameterJdbcTemplate.query(
-                "SELECT cc.customerCard_id, cc.customerCard_type FROM customerCard AS cc ORDER BY cc.customerCard_type",
+                "SELECT customerCard_id, customerCard_type, customerCard_block, customerCard_number," +
+                        "customerCard_expense, customerCard_balance  FROM customerCard ORDER BY customerCard_type",
                 customerCardRowMapper);
     }
 

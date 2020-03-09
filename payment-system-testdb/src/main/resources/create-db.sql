@@ -6,7 +6,7 @@ CREATE TABLE customerCard
     customerCard_number  INT NOT NULL,
     customerCard_balance BIGINT NOT NULL,
     customerCard_expense BIGINT NOT NULL,
-    customerCard_block   boolean NOT NULL DEFAULT FALSE,
+    customerCard_block   boolean NOT NULL,
 
     PRIMARY KEY (customerCard_id)
 );
