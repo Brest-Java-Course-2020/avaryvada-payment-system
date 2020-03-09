@@ -14,14 +14,12 @@ import org.springframework.jdbc.support.KeyHolder;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 public class PaymentDaoJdbc implements PaymentDao {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(PaymentDaoJdbc.class);
+//    private static final Logger LOGGER = LoggerFactory.getLogger(PaymentDaoJdbc.class);
 
 
     private final CustomerCardRowMapper customerCardRowMapper = new CustomerCardRowMapper();
@@ -36,7 +34,7 @@ public class PaymentDaoJdbc implements PaymentDao {
     @Override
     public List<CustomerCard> findAll() {
 
-        LOGGER.trace("findAll()");
+//        LOGGER.trace("findAll()");
         return namedParameterJdbcTemplate.query(
                 "SELECT cc.customerCard_id, cc.customerCard_type FROM customerCard AS cc ORDER BY cc.customerCard_type",
                 customerCardRowMapper);
@@ -45,7 +43,7 @@ public class PaymentDaoJdbc implements PaymentDao {
     @Override
     public Optional<CustomerCard> findById(Integer customerCardId) {
 
-        LOGGER.debug("findById(id:{})", customerCardId);
+//        LOGGER.debug("findById(id:{})", customerCardId);
         SqlParameterSource namedParameters = new MapSqlParameterSource("customerCard_id", customerCardId);
 
         List<CustomerCard> results = namedParameterJdbcTemplate.query(
@@ -59,7 +57,7 @@ public class PaymentDaoJdbc implements PaymentDao {
     @Override
     public Integer create(CustomerCard customerCard) {
 
-        LOGGER.debug("create(CustomerCard:{})", customerCard);
+//        LOGGER.debug("create(CustomerCard:{})", customerCard);
         MapSqlParameterSource params = new MapSqlParameterSource();
 
         params.addValue("customerCard_type", customerCard.getCustomerCardType());
@@ -82,7 +80,7 @@ public class PaymentDaoJdbc implements PaymentDao {
     @Override
     public int update(CustomerCard customerCard) {
 
-        LOGGER.debug("update(customerCard:{})", customerCard);
+//        LOGGER.debug("update(customerCard:{})", customerCard);
 
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("customerCard_id", customerCard.getCustomerCardId());
@@ -98,7 +96,7 @@ public class PaymentDaoJdbc implements PaymentDao {
     @Override
     public int delete(Integer customerCardId) {
 
-        LOGGER.debug("delete(customerCardId:{})", customerCardId);
+//        LOGGER.debug("delete(customerCardId:{})", customerCardId);
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("customerCard_id", customerCardId);
         return namedParameterJdbcTemplate.update(

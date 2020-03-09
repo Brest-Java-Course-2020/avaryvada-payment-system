@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="departmentDao" class="com.epam.brest.courses.dao.PaymentDaoJdbc">
+	<bean id="paymentDao" class="com.epam.brest.courses.dao.PaymentDaoJdbc">
 		<constructor-arg ref="jdbcTemplate"/>
 	</bean>
 
