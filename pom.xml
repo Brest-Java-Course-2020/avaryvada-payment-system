@@ -30,10 +30,31 @@
 		<module>payment-system-dao</module>
 		<module>payment-system-model</module>
 		<module>payment-system-testdb</module>
+        <module>payment-system-web-app</module>
+		<module>payment-system-service</module>
+		<module>payment-system-service-api</module>
 	</modules>
 
 	<dependencyManagement>
 		<dependencies>
+
+            <dependency>
+                <groupId>com.epam.brest.courses</groupId>
+                <artifactId>payment-system-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.epam.brest.courses</groupId>
+                <artifactId>payment-system-service-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.epam.brest.courses</groupId>
+                <artifactId>payment-system-web-app</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
 			<dependency>
 				<groupId>com.epam.brest.courses</groupId>
