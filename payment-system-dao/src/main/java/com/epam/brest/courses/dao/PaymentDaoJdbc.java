@@ -86,11 +86,12 @@ public class PaymentDaoJdbc implements PaymentDao {
 
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("customerCard_id", customerCard.getCustomerCardId());
-        params.addValue("customerCard_type", customerCard.getCustomerCardType());
+        params.addValue("customerCard_block", customerCard.getCustomerCardBlock());
+
         //TODO add all fields in query
 
         return namedParameterJdbcTemplate.update(
-                "UPDATE customerCard SET customerCard_type = :customerCard_type" +
+                "UPDATE customerCard SET customerCard_block = :customerCard_block" +
                         " WHERE customerCard_id = :customerCard_id",
                 params);
     }

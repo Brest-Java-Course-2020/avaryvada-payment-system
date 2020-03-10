@@ -16,7 +16,7 @@ CREATE TABLE operation
 (
     operation_id    INT NOT NULL AUTO_INCREMENT,
     description     VARCHAR(255) NOT NULL,
-    operation_date  DATETIME NOT NULL,
+    operation_date  DATE NOT NULL,
     operation_cost  BIGINT NOT NULL,
     customerCard_id INT NOT NULL ,
 

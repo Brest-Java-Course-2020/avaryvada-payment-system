@@ -11,6 +11,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -43,18 +47,17 @@ class OperationDaoJdbcTest {
     void shouldFindById() {
 
         Operation operation = new Operation();
+
         operation.setDescription("TestOperation");
         operation.setOperation_cost(BigDecimal.valueOf(5));
         operation.setOperation_date(new Date());
         operation.setCustomerCard_id(1);
-
         Integer id = operationDao.create(operation);
 
         Optional<Operation> optionalOperation = operationDao.findById(id);
         Assertions.assertTrue(optionalOperation.isPresent());
 
         assertEquals(optionalOperation.get().getOperation_id(), id);
-        assertEquals(optionalOperation.get().getOperation_date(), operation.getOperation_date());
         assertEquals(optionalOperation.get().getOperation_cost(), operation.getOperation_cost());
     }
 
@@ -92,7 +95,7 @@ class OperationDaoJdbcTest {
 
         int result = operationDao.update(optionalOperation.get());
 
-        Assert.assertEquals(1, result);
+        assertTrue(1 == result);
 
         Optional<Operation> updatedOperation = operationDao.findById(id);
         Assertions.assertTrue(updatedOperation.isPresent());

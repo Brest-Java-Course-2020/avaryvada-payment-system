@@ -90,7 +90,7 @@ class PaymentDaoJdbcTest {
         Optional<CustomerCard> optionalCard = paymentDao.findById(id);
         Assertions.assertTrue(optionalCard.isPresent()); //assert if not null
 
-        optionalCard.get().setCustomerCardType("Maestro");
+        optionalCard.get().setCustomerCardBlock(true);
 
         int result = paymentDao.update(optionalCard.get());
 
@@ -99,7 +99,7 @@ class PaymentDaoJdbcTest {
         Optional<CustomerCard> updatedCard = paymentDao.findById(id);
         Assertions.assertTrue(updatedCard.isPresent());
         assertEquals(updatedCard.get().getCustomerCardId(), id);
-        assertEquals(updatedCard.get().getCustomerCardType(), "Maestro");
+        assertEquals(updatedCard.get().getCustomerCardBlock(), true);
     }
 
     @Test
