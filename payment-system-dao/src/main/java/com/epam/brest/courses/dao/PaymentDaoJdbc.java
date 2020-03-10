@@ -48,7 +48,8 @@ public class PaymentDaoJdbc implements PaymentDao {
         SqlParameterSource namedParameters = new MapSqlParameterSource("customerCard_id", customerCardId);
 
         List<CustomerCard> results = namedParameterJdbcTemplate.query(
-                "SELECT customerCard_id, customerCard_type FROM customerCard WHERE customerCard_id = :customerCard_id",
+                "SELECT customerCard_id, customerCard_type, customerCard_balance," +
+                        "customerCard_number, customerCard_expense, customerCard_block FROM customerCard WHERE customerCard_id = :customerCard_id",
                 namedParameters, customerCardRowMapper);
 
         return Optional.ofNullable(DataAccessUtils.uniqueResult(results));
@@ -71,8 +72,8 @@ public class PaymentDaoJdbc implements PaymentDao {
 
                 "INSERT INTO customerCard (customerCard_type, " +
                         "customerCard_balance, " +
-                        "customerCard_number, customerCard_expense) VALUES (" +
-                        ":customerCard_type, :customerCard_balance, :customerCard_number, :customerCard_expense)",
+                        "customerCard_number, customerCard_expense, customerCard_block) VALUES (" +
+                        ":customerCard_type, :customerCard_balance, :customerCard_number, :customerCard_expense, false)",
                 params, keyHolder);
 
         return keyHolder.getKey().intValue();
