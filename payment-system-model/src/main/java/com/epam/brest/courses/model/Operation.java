@@ -49,4 +49,15 @@ public class Operation {
     public void setOperation_cost(BigDecimal operation_cost) {
         this.operation_cost = operation_cost;
     }
+
+    @Override
+    public String toString() {
+        return "Operation{" +
+                "operation_id=" + operation_id +
+                ", customerCard_id=" + customerCard_id +
+                ", description='" + description + '\'' +
+                ", operation_date=" + operation_date +
+                ", operation_cost=" + operation_cost +
+                '}';
+    }
 }

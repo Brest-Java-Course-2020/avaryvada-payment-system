@@ -2,8 +2,6 @@ package com.epam.brest.courses.dao;
 
 import com.epam.brest.courses.model.Operation;
 
-import com.epam.brest.courses.model.Operation;
-
 import java.util.List;
 import java.util.Optional;
 

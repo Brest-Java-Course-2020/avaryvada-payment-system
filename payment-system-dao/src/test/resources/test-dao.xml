@@ -7,6 +7,9 @@
 	<bean id="paymentDao" class="com.epam.brest.courses.dao.PaymentDaoJdbc">
 		<constructor-arg ref="jdbcTemplate"/>
 	</bean>
+	<bean id="operationDao" class="com.epam.brest.courses.dao.OperationDaoJdbc">
+		<constructor-arg ref="jdbcTemplate"/>
+	</bean>
 
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
 		<constructor-arg ref="dataSource"/>
