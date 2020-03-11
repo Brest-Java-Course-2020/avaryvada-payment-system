@@ -33,6 +33,7 @@
         <module>payment-system-web-app</module>
 		<module>payment-system-service</module>
 		<module>payment-system-service-api</module>
+		<module>payment-system-service</module>
 	</modules>
 
 	<dependencyManagement>
